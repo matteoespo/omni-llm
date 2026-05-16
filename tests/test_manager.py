@@ -1,6 +1,7 @@
-import lazyllm
+import omnillm
 
-manager = lazyllm.LocalLLMManager()
+
+manager = omnillm.LocalLLMManager()
 
 response = manager.chat(
     backend="ollama", 

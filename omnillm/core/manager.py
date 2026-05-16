@@ -1,5 +1,5 @@
-from lazyllm.adapters.ollama_adapter import OllamaAdapter
-from lazyllm.adapters.llamacpp_adapter import LlamaCPPAdapter
+from omnillm.adapters.ollama_adapter import OllamaAdapter
+from omnillm.adapters.llamacpp_adapter import LlamaCPPAdapter
 
 class LocalLLMManager:
     def __init__(self):

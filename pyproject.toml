@@ -1,5 +1,5 @@
 [project]
-name = "lazy-llm"
+name = "omni-llm"
 version = "0.1.0"
 description = "Add your description here"
 readme = "README.md"
@@ -8,4 +8,13 @@ dependencies = [
     "huggingface-hub>=1.15.0",
     "llama-cpp-python>=0.3.23",
     "ollama>=0.6.2",
+    "pytest>=9.0.3",
 ]
+
+[dependency-groups]
+dev = [
+    "omni-llm",
+]
+
+[tool.uv.sources]
+omni-llm = { workspace = true }
