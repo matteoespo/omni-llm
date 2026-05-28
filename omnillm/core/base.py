@@ -7,6 +7,6 @@ class LLMBackend(ABC):
         pass
 
     @abstractmethod
-    def chat(self, model_name: str, messages: list, stream: bool = False, **kwargs):
+    def chat(self, model_name: str, messages: list, stream: bool = False, json_mode: bool = False, **kwargs):
         """Sends a prompt to the model and returns the response (or a generator if stream=True)."""
         pass

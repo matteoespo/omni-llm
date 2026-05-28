@@ -9,9 +9,9 @@ class ChatSession:
         if system_prompt:
             self.messages.append({"role": "system", "content": system_prompt})
 
-    def send(self, user_input: str, stream: bool = False, **kwargs):
+    def send(self, user_input: str, stream: bool = False, json_mode: bool = False, **kwargs):
         self.messages.append({"role": "user", "content": user_input})
-        response = self.manager.chat(self.backend, self.model, self.messages, stream=stream, **kwargs)
+        response = self.manager.chat(self.backend, self.model, self.messages, stream=stream, json_mode=json_mode, **kwargs)
         
         if stream:
             def stream_wrapper():

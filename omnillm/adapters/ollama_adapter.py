@@ -15,10 +15,15 @@ class OllamaAdapter(LLMBackend):
             else:
                 raise e
 
-    def chat(self, model_name: str, messages: list, stream: bool = False, **kwargs):
+    def chat(self, model_name: str, messages: list, stream: bool = False, json_mode: bool = False, **kwargs):
         self.pull_model(model_name) 
         print(f"[omnillm -> Ollama] Generating response...")
-        response = ollama.chat(model=model_name, messages=messages, stream=stream)
+        
+        chat_kwargs = {"model": model_name, "messages": messages, "stream": stream}
+        if json_mode:
+            chat_kwargs["format"] = "json"
+            
+        response = ollama.chat(**chat_kwargs)
         
         if stream:
             def generator():

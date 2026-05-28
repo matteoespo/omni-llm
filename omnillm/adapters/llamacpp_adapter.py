@@ -12,7 +12,7 @@ class LlamaCPPAdapter(LLMBackend):
         local_path = hf_hub_download(repo_id=model_name, filename=kwargs.get("filename"))
         return local_path
 
-    def chat(self, model_name: str, messages: list, stream: bool = False, **kwargs):
+    def chat(self, model_name: str, messages: list, stream: bool = False, json_mode: bool = False, **kwargs):
         local_model_path = self.pull_model(model_name, **kwargs)
         
         # only load if it's a new model
@@ -28,7 +28,11 @@ class LlamaCPPAdapter(LLMBackend):
         else:
             print(f"[omnillm -> llama.cpp] '{model_name}' is already in memory. Chatting...")
         
-        response = self.llm_instance.create_chat_completion(messages=messages, stream=stream)
+        chat_kwargs = {"messages": messages, "stream": stream}
+        if json_mode:
+            chat_kwargs["response_format"] = {"type": "json_object"}
+            
+        response = self.llm_instance.create_chat_completion(**chat_kwargs)
         
         if stream:
             def generator():
