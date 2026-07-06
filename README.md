@@ -10,6 +10,7 @@
   - [Interactive CLI](#interactive-cli)
   - [OpenAI-Compatible FastAPI Server](#openai-compatible-fastapi-server)
 - [Running Tests](#running-tests)
+- [Contributing](#contributing)
 - [License](#license)
 
 ---
@@ -155,6 +156,12 @@ uv run pytest
 source .venv/bin/activate
 pytest
 ```
+
+---
+
+## Contributing
+
+Contributions are welcome! Please see the [CONTRIBUTING.md](CONTRIBUTING.md) guide for details on setting up development environments and submitting pull requests.
 
 ---
 
