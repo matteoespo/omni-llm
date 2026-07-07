@@ -1,57 +1,63 @@
-# Omni-LLM
+<p align="center">
+  <img src="https://img.shields.io/badge/🧠-Omni--LLM-blueviolet?style=for-the-badge&logoColor=white" alt="Omni-LLM" height="50"/>
+</p>
 
-**Omni-LLM** is a unified Python interface and API server for running local Large Language Models (LLMs). It provides a single wrapper over multiple local inference backends (currently supporting [Ollama](https://ollama.com/) and [llama.cpp](https://github.com/ggerganov/llama.cpp)) with built-in support for chat history, streaming responses, JSON mode, and tool calling (function calling).
+<h3 align="center">One interface. Every local LLM.</h3>
 
-## Table of Contents
-- [Architecture](#architecture)
-- [Installation](#installation)
-- [Quick Start](#quick-start)
-  - [Python API](#python-api)
-  - [Interactive CLI](#interactive-cli)
-  - [OpenAI-Compatible FastAPI Server](#openai-compatible-fastapi-server)
-- [Running Tests](#running-tests)
-- [Contributing](#contributing)
-- [License](#license)
+<p align="center">
+  <em>A unified Python SDK and OpenAI-compatible API server for local large language models.</em>
+</p>
+
+<p align="center">
+  <a href="https://github.com/matteoespo/omni-llm/actions/workflows/ci.yml"><img src="https://github.com/matteoespo/omni-llm/actions/workflows/ci.yml/badge.svg" alt="CI"></a>
+  <a href="https://github.com/matteoespo/omni-llm/actions/workflows/codeql.yml"><img src="https://github.com/matteoespo/omni-llm/actions/workflows/codeql.yml/badge.svg" alt="CodeQL"></a>
+  <a href="https://pypi.org/project/omni-llm/"><img src="https://img.shields.io/pypi/v/omni-llm?color=blue&label=PyPI" alt="PyPI"></a>
+  <a href="https://pypi.org/project/omni-llm/"><img src="https://img.shields.io/pypi/pyversions/omni-llm" alt="Python"></a>
+  <a href="https://github.com/matteoespo/omni-llm/blob/main/LICENSE"><img src="https://img.shields.io/github/license/matteoespo/omni-llm?color=green" alt="License"></a>
+  <a href="https://github.com/matteoespo/omni-llm/stargazers"><img src="https://img.shields.io/github/stars/matteoespo/omni-llm?style=social" alt="Stars"></a>
+</p>
+
+<p align="center">
+  <a href="#-quick-start">Quick Start</a> •
+  <a href="#-features">Features</a> •
+  <a href="#-architecture">Architecture</a> •
+  <a href="#-installation">Installation</a> •
+  <a href="#-usage">Usage</a> •
+  <a href="#-api-server">API Server</a> •
+  <a href="#-contributing">Contributing</a>
+</p>
 
 ---
 
-## Architecture
+## ✨ Features
 
-The project has a modular design separating inference engines (adapters) from the session and server layers:
-
-- **[omnillm/core/base.py](omnillm/core/base.py)**: Defines `LLMBackend`, the abstract base class for all LLM adapters.
-- **[omnillm/core/manager.py](omnillm/core/manager.py)**: Implements `LocalLLMManager` which acts as the registry for loading backend adapters and routing chat requests.
-- **[omnillm/core/session.py](omnillm/core/session.py)**: Implements `ChatSession` for managing conversational state/history, streaming, and tool calls.
-- **[omnillm/adapters/](omnillm/adapters/)**:
-  - `ollama_adapter.py`: Integrates with Ollama's Python client.
-  - `llamacpp_adapter.py`: Integrates with `llama-cpp-python` and automatically pulls/caches GGUF models from Hugging Face Hub.
-- **[omnillm/server.py](omnillm/server.py)**: Implements an OpenAI-compatible FastAPI HTTP server.
-- **[omnillm/__main__.py](omnillm/__main__.py)**: Interactive CLI interface.
+| Feature | Description |
+|---|---|
+| 🔌 **Multi-Backend** | Swap between [Ollama](https://ollama.com/) and [llama.cpp](https://github.com/ggerganov/llama.cpp) with a single parameter change |
+| 💬 **Chat Sessions** | Built-in conversation memory and history management |
+| 🌊 **Streaming** | Real-time token-by-token streaming (sync & async) |
+| 🧰 **Tool Calling** | Native function/tool calling support across backends |
+| 📦 **JSON Mode** | Enforce structured JSON output from any supported model |
+| 🌐 **OpenAI-Compatible API** | Drop-in FastAPI server compatible with the OpenAI SDK |
+| ⚡ **Async-First** | Full `async`/`await` support for high-concurrency workloads |
+| 🤗 **Auto Model Pull** | Automatically downloads models from Ollama or Hugging Face Hub |
 
 ---
 
-## Installation
+## 🚀 Quick Start
 
-Ensure you have Python 3.12+ installed. The project uses [uv](https://github.com/astral-sh/uv) for package and dependency management.
-
-To install dependencies and package in editable mode:
 ```bash
-uv pip install -e .
+# Install
+pip install omni-llm
+
+# Or with uv (recommended)
+uv pip install omni-llm
 ```
 
----
-
-## Quick Start
-
-### Python API
-
-#### Basic Chat
 ```python
 from omnillm import LocalLLMManager
 
 manager = LocalLLMManager()
-
-# Synchronous chat
 response = manager.chat(
     backend="ollama",
     model="llama3",
@@ -60,21 +66,115 @@ response = manager.chat(
 print(response)
 ```
 
-#### Chat Session (with Memory / History)
+**That's it.** Switch to llama.cpp by changing one word:
+
+```python
+response = manager.chat(
+    backend="llama.cpp",
+    model="unsloth/llama-3-8b-Instruct-GGUF",
+    messages=[{"role": "user", "content": "Hello!"}],
+    filename="llama-3-8b-Instruct-Q4_K_M.gguf"
+)
+```
+
+---
+
+## 🏗️ Architecture
+
+```
+┌─────────────────────────────────────────────────────────┐
+│                      Your Application                   │
+├─────────────┬─────────────────────┬─────────────────────┤
+│   Python    │   Interactive CLI   │  OpenAI-Compatible  │
+│     SDK     │  (python -m omnillm)│   FastAPI Server    │
+├─────────────┴─────────────────────┴─────────────────────┤
+│                    ChatSession                          │
+│              (History · Streaming · Tools)              │
+├─────────────────────────────────────────────────────────┤
+│                  LocalLLMManager                        │
+│              (Backend Registry & Router)                │
+├────────────────────────┬────────────────────────────────┤
+│    OllamaAdapter       │       LlamaCPPAdapter          │
+│  (ollama Python SDK)   │  (llama-cpp-python + HF Hub)  │
+└────────────────────────┴────────────────────────────────┘
+```
+
+### Module Map
+
+| Module | Purpose |
+|---|---|
+| [`omnillm/core/base.py`](omnillm/core/base.py) | `LLMBackend` — abstract base class for all adapters |
+| [`omnillm/core/manager.py`](omnillm/core/manager.py) | `LocalLLMManager` — backend registry & request router |
+| [`omnillm/core/session.py`](omnillm/core/session.py) | `ChatSession` — conversation state, streaming, tool calls |
+| [`omnillm/adapters/ollama_adapter.py`](omnillm/adapters/ollama_adapter.py) | Ollama integration via official Python client |
+| [`omnillm/adapters/llamacpp_adapter.py`](omnillm/adapters/llamacpp_adapter.py) | llama.cpp integration + automatic GGUF model caching |
+| [`omnillm/server.py`](omnillm/server.py) | OpenAI-compatible FastAPI HTTP server |
+| [`omnillm/__main__.py`](omnillm/__main__.py) | Interactive CLI chat interface |
+
+---
+
+## 📦 Installation
+
+### Prerequisites
+
+- **Python 3.12+**
+- **[uv](https://github.com/astral-sh/uv)** (recommended) or pip
+- At least one backend:
+  - [Ollama](https://ollama.com/) installed and running, **or**
+  - A GGUF model on [Hugging Face Hub](https://huggingface.co/) (auto-downloaded)
+
+### Install from source
+
+```bash
+git clone https://github.com/matteoespo/omni-llm.git
+cd omni-llm
+uv pip install -e .
+```
+
+### Install from PyPI
+
+```bash
+pip install omni-llm
+# or
+uv pip install omni-llm
+```
+
+---
+
+## 📖 Usage
+
+### Python SDK
+
+#### Basic Chat
+
+```python
+from omnillm import LocalLLMManager
+
+manager = LocalLLMManager()
+
+response = manager.chat(
+    backend="ollama",
+    model="llama3",
+    messages=[{"role": "user", "content": "Hello!"}]
+)
+print(response)
+```
+
+#### Chat Session (with Memory)
+
 ```python
 session = manager.create_session(
-    backend="ollama", 
-    model="llama3", 
+    backend="ollama",
+    model="llama3",
     system_prompt="You are a helpful assistant."
 )
 
-# First send
 response1 = session.send("Hello, I am Bob.")
-# Second send (remembers user name)
-response2 = session.send("What is my name?")
+response2 = session.send("What is my name?")  # Remembers "Bob"
 ```
 
-#### Asynchronous Chat & Streaming
+#### Async & Streaming
+
 ```python
 import asyncio
 from omnillm import LocalLLMManager
@@ -82,8 +182,7 @@ from omnillm import LocalLLMManager
 async def main():
     manager = LocalLLMManager()
     session = manager.create_session(backend="ollama", model="llama3")
-    
-    # Asynchronous streaming
+
     stream = await session.asend("Tell me a short story.", stream=True)
     async for chunk in stream:
         print(chunk, end="", flush=True)
@@ -91,81 +190,156 @@ async def main():
 asyncio.run(main())
 ```
 
+#### Tool Calling
+
+```python
+tools = [{
+    "type": "function",
+    "function": {
+        "name": "get_weather",
+        "description": "Get current weather for a city",
+        "parameters": {
+            "type": "object",
+            "properties": {
+                "city": {"type": "string", "description": "City name"}
+            },
+            "required": ["city"]
+        }
+    }
+}]
+
+response = manager.chat(
+    backend="ollama",
+    model="llama3",
+    messages=[{"role": "user", "content": "What's the weather in Tokyo?"}],
+    tools=tools
+)
+# response["tool_calls"] contains the function call
+```
+
+#### JSON Mode
+
+```python
+response = manager.chat(
+    backend="ollama",
+    model="llama3",
+    messages=[{"role": "user", "content": "List 3 colors as JSON"}],
+    json_mode=True
+)
+# Returns valid JSON string
+```
+
 ---
 
-## Interactive CLI
+### Interactive CLI
 
-Start an interactive chat session in the terminal:
+Start an interactive chat session directly in your terminal:
+
 ```bash
 # Using Ollama
 python -m omnillm --backend ollama --model llama3
 
-# Using llama.cpp (downloads model from HuggingFace Hub)
-python -m omnillm --backend llama.cpp --model unsloth/llama-3-8b-Instruct-GGUF --filename llama-3-8b-Instruct-Q4_K_M.gguf
+# Using llama.cpp (auto-downloads from Hugging Face)
+python -m omnillm --backend llama.cpp \
+    --model unsloth/llama-3-8b-Instruct-GGUF \
+    --filename llama-3-8b-Instruct-Q4_K_M.gguf
+
+# With a system prompt
+python -m omnillm --backend ollama --model llama3 \
+    --system "You are a pirate. Respond only in pirate speak."
 ```
 
 ---
 
-## OpenAI-Compatible FastAPI Server
+### API Server
 
-Launch the local FastAPI server simulating OpenAI's `/v1/chat/completions` endpoints:
+Launch an OpenAI-compatible local API server:
 
 ```bash
 python -m omnillm.server
+# Server runs on http://localhost:8000
 ```
-The server runs on `http://localhost:8000`.
 
-### Client Example (OpenAI SDK)
-You can target the server using the standard `openai` library:
+#### Use with the OpenAI SDK
 
 ```python
 import openai
 
 client = openai.OpenAI(
     base_url="http://localhost:8000/v1",
-    api_key="ignored"
+    api_key="not-needed"
 )
 
-# Prefix the model parameter with "backend/" to route to a specific adapter.
-# Defaults to ollama if no prefix is supplied.
 response = client.chat.completions.create(
-    model="ollama/llama3",
+    model="ollama/llama3",          # prefix with backend name
     messages=[{"role": "user", "content": "Explain relativity in one sentence."}]
 )
 print(response.choices[0].message.content)
+```
+
+#### Use with curl
+
+```bash
+curl -X POST http://localhost:8000/v1/chat/completions \
+  -H "Content-Type: application/json" \
+  -d '{
+    "model": "ollama/llama3",
+    "messages": [{"role": "user", "content": "Hello!"}]
+  }'
 ```
 
 ---
 
 ## Running Tests
 
-To run the test suite, make sure you run it within the project's virtual environment. You can run it in one of the following ways:
-
-**Using the virtual environment's executable directly:**
 ```bash
-.venv/bin/pytest
-```
-
-**Using `uv` (recommended if installed):**
-```bash
+# With uv (recommended)
 uv run pytest
-```
 
-**Activating the virtual environment first:**
-```bash
+# Or activate the venv first
 source .venv/bin/activate
 pytest
+
+# With coverage
+uv run pytest --cov=omnillm --cov-report=term-missing
 ```
 
 ---
 
-## Contributing
+## 🤝 Contributing
 
-Contributions are welcome! Please see the [CONTRIBUTING.md](CONTRIBUTING.md) guide for details on setting up development environments and submitting pull requests.
+Contributions are welcome! Please see the [Contributing Guide](CONTRIBUTING.md) for details on:
+
+- Setting up your development environment
+- Adding new LLM backend adapters
+- Submitting pull requests
 
 ---
 
-## License
+## 🔒 Security
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+Found a vulnerability? Please see our [Security Policy](SECURITY.md) for responsible disclosure guidelines.
 
+---
+
+## 📜 License
+
+This project is licensed under the **MIT License** — see the [LICENSE](LICENSE) file for details.
+
+---
+
+## 🗺️ Roadmap
+
+- [ ] 🔧 vLLM backend adapter
+- [ ] 🔧 KoboldCpp backend adapter
+- [ ] 📊 Token usage tracking and reporting
+- [ ] 🖼️ Vision/multimodal support
+- [ ] 🔄 Model hot-swapping in sessions
+- [ ] 📝 Prompt template management
+- [ ] 🐳 Docker image for the API server
+
+---
+
+<p align="center">
+  Made with ❤️ by <a href="https://github.com/matteoespo">matteoespo</a>
+</p>

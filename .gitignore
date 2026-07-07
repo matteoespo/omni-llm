@@ -1,10 +1,79 @@
-# Python-generated files
+# ──────────────────────────────────────────────
+# Python
+# ──────────────────────────────────────────────
 __pycache__/
-*.py[oc]
+*.py[cod]
+*$py.class
+*.so
+
+# Distribution / Packaging
 build/
 dist/
 wheels/
-*.egg-info
+*.egg-info/
+*.egg
+sdist/
+MANIFEST
 
-# Virtual environments
-.venv
+# Virtual Environments
+.venv/
+venv/
+ENV/
+
+# ──────────────────────────────────────────────
+# Testing & Coverage
+# ──────────────────────────────────────────────
+.pytest_cache/
+.coverage
+.coverage.*
+htmlcov/
+coverage.xml
+*.cover
+*.lcov
+
+# ──────────────────────────────────────────────
+# Type Checking & Linting
+# ──────────────────────────────────────────────
+.mypy_cache/
+.ruff_cache/
+.pytype/
+
+# ──────────────────────────────────────────────
+# IDE & Editors
+# ──────────────────────────────────────────────
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.project
+.settings/
+
+# ──────────────────────────────────────────────
+# OS Files
+# ──────────────────────────────────────────────
+.DS_Store
+Thumbs.db
+Desktop.ini
+
+# ──────────────────────────────────────────────
+# Environment & Secrets
+# ──────────────────────────────────────────────
+.env
+.env.local
+*.pem
+
+# ──────────────────────────────────────────────
+# Models (large files)
+# ──────────────────────────────────────────────
+*.gguf
+*.bin
+*.safetensors
+models/
+
+# ──────────────────────────────────────────────
+# Misc
+# ──────────────────────────────────────────────
+*.log
+*.bak
+*.tmp

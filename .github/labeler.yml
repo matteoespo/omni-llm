@@ -1,0 +1,31 @@
+# Configuration for actions/labeler
+# Maps file path globs to labels applied automatically on PRs
+
+"python":
+  - changed-files:
+      - any-glob-to-any-file:
+          - "omnillm/**/*.py"
+          - "pyproject.toml"
+
+"tests":
+  - changed-files:
+      - any-glob-to-any-file:
+          - "tests/**"
+
+"documentation":
+  - changed-files:
+      - any-glob-to-any-file:
+          - "*.md"
+          - "docs/**"
+
+"ci/cd":
+  - changed-files:
+      - any-glob-to-any-file:
+          - ".github/**"
+
+"dependencies":
+  - changed-files:
+      - any-glob-to-any-file:
+          - "pyproject.toml"
+          - "uv.lock"
+          - "requirements*.txt"

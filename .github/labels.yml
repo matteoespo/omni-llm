@@ -1,0 +1,90 @@
+# Label definitions for Omni-LLM
+# Sync with: https://github.com/Financial-Times/github-label-sync
+
+- name: "bug"
+  color: "d73a4a"
+  description: "Something isn't working"
+
+- name: "enhancement"
+  color: "a2eeef"
+  description: "New feature or improvement"
+
+- name: "documentation"
+  color: "0075ca"
+  description: "Improvements or additions to documentation"
+
+- name: "good first issue"
+  color: "7057ff"
+  description: "Good for newcomers"
+
+- name: "help wanted"
+  color: "008672"
+  description: "Extra attention is needed"
+
+- name: "question"
+  color: "d876e3"
+  description: "Further information is requested"
+
+- name: "wontfix"
+  color: "ffffff"
+  description: "This will not be worked on"
+
+- name: "duplicate"
+  color: "cfd3d7"
+  description: "This issue or pull request already exists"
+
+- name: "invalid"
+  color: "e4e669"
+  description: "This doesn't seem right"
+
+- name: "dependencies"
+  color: "0366d6"
+  description: "Pull requests that update a dependency"
+
+- name: "ci/cd"
+  color: "fbca04"
+  description: "CI/CD pipeline and GitHub Actions"
+
+- name: "breaking-change"
+  color: "b60205"
+  description: "Introduces a breaking change"
+
+- name: "triage"
+  color: "ededed"
+  description: "Needs triage and categorization"
+
+- name: "python"
+  color: "3572a5"
+  description: "Related to Python source code"
+
+- name: "tests"
+  color: "bfd4f2"
+  description: "Related to tests and test infrastructure"
+
+- name: "maintenance"
+  color: "fef2c0"
+  description: "Refactoring, cleanup, or chores"
+
+- name: "refactor"
+  color: "f9d0c4"
+  description: "Code refactoring without behavior change"
+
+- name: "feature"
+  color: "1d76db"
+  description: "New feature request or implementation"
+
+- name: "skip-changelog"
+  color: "e6e6e6"
+  description: "Exclude from release notes"
+
+- name: "priority: high"
+  color: "b60205"
+  description: "High priority issue"
+
+- name: "priority: medium"
+  color: "fbca04"
+  description: "Medium priority issue"
+
+- name: "priority: low"
+  color: "0e8a16"
+  description: "Low priority issue"
