@@ -316,12 +316,6 @@ Contributions are welcome! Please see the [Contributing Guide](CONTRIBUTING.md) 
 
 ---
 
-## 🔒 Security
-
-Found a vulnerability? Please see our [Security Policy](SECURITY.md) for responsible disclosure guidelines.
-
----
-
 ## 📜 License
 
 This project is licensed under the **MIT License** — see the [LICENSE](LICENSE) file for details.
