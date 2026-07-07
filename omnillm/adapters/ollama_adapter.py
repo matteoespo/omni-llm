@@ -1,5 +1,7 @@
 import ollama
+
 from omnillm.core.base import LLMBackend
+
 
 class OllamaAdapter(LLMBackend):
     def pull_model(self, model_name: str, **kwargs):
@@ -15,37 +17,56 @@ class OllamaAdapter(LLMBackend):
             else:
                 raise e
 
-    def chat(self, model_name: str, messages: list, stream: bool = False, json_mode: bool = False, tools: list = None, **kwargs):
-        self.pull_model(model_name) 
+    def chat(
+        self,
+        model_name: str,
+        messages: list,
+        stream: bool = False,
+        json_mode: bool = False,
+        tools: list = None,
+        **kwargs,
+    ):
+        self.pull_model(model_name)
         print("[omnillm -> Ollama] Generating response...")
-        
+
         chat_kwargs = {"model": model_name, "messages": messages, "stream": stream}
         if json_mode:
             chat_kwargs["format"] = "json"
         if tools:
             chat_kwargs["tools"] = tools
-            
+
         response = ollama.chat(**chat_kwargs)
-        
+
         if stream:
+
             def generator():
                 for chunk in response:
-                    yield chunk['message'].get('content', '')
+                    yield chunk["message"].get("content", "")
+
             return generator()
         else:
             if tools:
                 return {
-                    "content": response['message'].get('content', ''),
-                    "tool_calls": response['message'].get('tool_calls', [])
+                    "content": response["message"].get("content", ""),
+                    "tool_calls": response["message"].get("tool_calls", []),
                 }
-            return response['message'].get('content', '') or ''
+            return response["message"].get("content", "") or ""
 
-    async def achat(self, model_name: str, messages: list, stream: bool = False, json_mode: bool = False, tools: list = None, **kwargs):
+    async def achat(
+        self,
+        model_name: str,
+        messages: list,
+        stream: bool = False,
+        json_mode: bool = False,
+        tools: list = None,
+        **kwargs,
+    ):
         import asyncio
+
         from ollama import AsyncClient
-        
+
         await asyncio.to_thread(self.pull_model, model_name)
-        
+
         print("[omnillm -> Ollama Async] Generating response...")
         client = AsyncClient()
         chat_kwargs = {"model": model_name, "messages": messages, "stream": stream}
@@ -53,18 +74,20 @@ class OllamaAdapter(LLMBackend):
             chat_kwargs["format"] = "json"
         if tools:
             chat_kwargs["tools"] = tools
-            
+
         response = await client.chat(**chat_kwargs)
-        
+
         if stream:
+
             async def async_generator():
                 async for chunk in response:
-                    yield chunk['message'].get('content', '')
+                    yield chunk["message"].get("content", "")
+
             return async_generator()
         else:
             if tools:
                 return {
-                    "content": response['message'].get('content', ''),
-                    "tool_calls": response['message'].get('tool_calls', [])
+                    "content": response["message"].get("content", ""),
+                    "tool_calls": response["message"].get("tool_calls", []),
                 }
-            return response['message'].get('content', '') or ''
+            return response["message"].get("content", "") or ""

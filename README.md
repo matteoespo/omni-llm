@@ -29,22 +29,22 @@
 
 ---
 
-## ✨ Features
+## Features
 
 | Feature | Description |
 |---|---|
-| 🔌 **Multi-Backend** | Swap between [Ollama](https://ollama.com/) and [llama.cpp](https://github.com/ggerganov/llama.cpp) with a single parameter change |
-| 💬 **Chat Sessions** | Built-in conversation memory and history management |
-| 🌊 **Streaming** | Real-time token-by-token streaming (sync & async) |
-| 🧰 **Tool Calling** | Native function/tool calling support across backends |
-| 📦 **JSON Mode** | Enforce structured JSON output from any supported model |
-| 🌐 **OpenAI-Compatible API** | Drop-in FastAPI server compatible with the OpenAI SDK |
-| ⚡ **Async-First** | Full `async`/`await` support for high-concurrency workloads |
-| 🤗 **Auto Model Pull** | Automatically downloads models from Ollama or Hugging Face Hub |
+| **Multi-Backend** | Swap between [Ollama](https://ollama.com/) and [llama.cpp](https://github.com/ggerganov/llama.cpp) with a single parameter change |
+| **Chat Sessions** | Built-in conversation memory and history management |
+| **Streaming** | Real-time token-by-token streaming (sync & async) |
+| **Tool Calling** | Native function/tool calling support across backends |
+| **JSON Mode** | Enforce structured JSON output from any supported model |
+| **OpenAI-Compatible API** | Drop-in FastAPI server compatible with the OpenAI SDK |
+| **Async-First** | Full `async`/`await` support for high-concurrency workloads |
+| **Auto Model Pull** | Automatically downloads models from Ollama or Hugging Face Hub |
 
 ---
 
-## 🚀 Quick Start
+## Quick Start
 
 ```bash
 # Install
@@ -79,7 +79,7 @@ response = manager.chat(
 
 ---
 
-## 🏗️ Architecture
+## Architecture
 
 ```
 ┌─────────────────────────────────────────────────────────┐
@@ -113,7 +113,7 @@ response = manager.chat(
 
 ---
 
-## 📦 Installation
+## Installation
 
 ### Prerequisites
 
@@ -141,7 +141,7 @@ uv pip install omni-llm
 
 ---
 
-## 📖 Usage
+## Usage
 
 ### Python SDK
 
@@ -306,7 +306,7 @@ uv run pytest --cov=omnillm --cov-report=term-missing
 
 ---
 
-## 🤝 Contributing
+## Contributing
 
 Contributions are welcome! Please see the [Contributing Guide](CONTRIBUTING.md) for details on:
 
@@ -316,21 +316,21 @@ Contributions are welcome! Please see the [Contributing Guide](CONTRIBUTING.md) 
 
 ---
 
-## 📜 License
+## License
 
 This project is licensed under the **MIT License** — see the [LICENSE](LICENSE) file for details.
 
 ---
 
-## 🗺️ Roadmap
+## Roadmap
 
-- [ ] 🔧 vLLM backend adapter
-- [ ] 🔧 KoboldCpp backend adapter
-- [ ] 📊 Token usage tracking and reporting
-- [ ] 🖼️ Vision/multimodal support
-- [ ] 🔄 Model hot-swapping in sessions
-- [ ] 📝 Prompt template management
-- [ ] 🐳 Docker image for the API server
+- [ ] vLLM backend adapter
+- [ ] KoboldCpp backend adapter
+- [ ] Token usage tracking and reporting
+- [ ] Vision/multimodal support
+- [ ] Model hot-swapping in sessions
+- [ ] Prompt template management
+- [ ] Docker image for the API server
 
 ---
 

@@ -1,6 +1,8 @@
 import argparse
 import sys
+
 from omnillm import LocalLLMManager
+
 
 def main():
     parser = argparse.ArgumentParser(description="Omni-LLM CLI Interface")
@@ -8,11 +10,11 @@ def main():
     parser.add_argument("--model", type=str, required=True, help="Model name (e.g., llama3, unsloth/llama-3-8b-GGUF)")
     parser.add_argument("--system", type=str, help="Optional system prompt")
     parser.add_argument("--no-stream", action="store_true", help="Disable streaming output")
-    
+
     args = parser.parse_args()
 
     manager = LocalLLMManager()
-    
+
     try:
         session = manager.create_session(backend=args.backend, model=args.model, system_prompt=args.system)
     except ValueError as e:
@@ -31,7 +33,7 @@ def main():
                 break
             if not user_input.strip():
                 continue
-                
+
             print("AI: ", end="", flush=True)
             if stream:
                 for chunk in session.send(user_input, stream=True):
@@ -45,6 +47,7 @@ def main():
             break
         except Exception as e:
             print(f"\nAn error occurred: {e}")
+
 
 if __name__ == "__main__":
     main()
