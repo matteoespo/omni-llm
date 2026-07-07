@@ -465,7 +465,7 @@ wheels = [
 ]
 
 [[package]]
-name = "omni-llm"
+name = "omni-local-llm"
 version = "0.1.0"
 source = { editable = "." }
 dependencies = [
@@ -478,7 +478,7 @@ dependencies = [
 
 [package.dev-dependencies]
 dev = [
-    { name = "omni-llm" },
+    { name = "omni-local-llm" },
     { name = "pytest" },
     { name = "pytest-asyncio" },
     { name = "pytest-cov" },
@@ -496,7 +496,7 @@ requires-dist = [
 
 [package.metadata.requires-dev]
 dev = [
-    { name = "omni-llm", editable = "." },
+    { name = "omni-local-llm", editable = "." },
     { name = "pytest", specifier = ">=9.0.3" },
     { name = "pytest-asyncio" },
     { name = "pytest-cov", specifier = ">=6.0" },

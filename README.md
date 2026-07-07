@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://img.shields.io/badge/🧠-Omni--LLM-blueviolet?style=for-the-badge&logoColor=white" alt="Omni-LLM" height="50"/>
+  <img src="https://img.shields.io/badge/🧠-Omni--LLM-blueviolet?style=for-the-badge&logoColor=white" alt="Omni-Local-LLM" height="50"/>
 </p>
 
 <h3 align="center">One interface. Every local LLM.</h3>
@@ -9,12 +9,12 @@
 </p>
 
 <p align="center">
-  <a href="https://github.com/matteoespo/omni-llm/actions/workflows/ci.yml"><img src="https://github.com/matteoespo/omni-llm/actions/workflows/ci.yml/badge.svg" alt="CI"></a>
-  <a href="https://github.com/matteoespo/omni-llm/actions/workflows/codeql.yml"><img src="https://github.com/matteoespo/omni-llm/actions/workflows/codeql.yml/badge.svg" alt="CodeQL"></a>
-  <a href="https://pypi.org/project/omni-llm/"><img src="https://img.shields.io/pypi/v/omni-llm?color=blue&label=PyPI" alt="PyPI"></a>
-  <a href="https://pypi.org/project/omni-llm/"><img src="https://img.shields.io/pypi/pyversions/omni-llm" alt="Python"></a>
-  <a href="https://github.com/matteoespo/omni-llm/blob/main/LICENSE"><img src="https://img.shields.io/github/license/matteoespo/omni-llm?color=green" alt="License"></a>
-  <a href="https://github.com/matteoespo/omni-llm/stargazers"><img src="https://img.shields.io/github/stars/matteoespo/omni-llm?style=social" alt="Stars"></a>
+  <a href="https://github.com/matteoespo/omni-local-llm/actions/workflows/ci.yml"><img src="https://github.com/matteoespo/omni-local-llm/actions/workflows/ci.yml/badge.svg" alt="CI"></a>
+  <a href="https://github.com/matteoespo/omni-local-llm/actions/workflows/codeql.yml"><img src="https://github.com/matteoespo/omni-local-llm/actions/workflows/codeql.yml/badge.svg" alt="CodeQL"></a>
+  <a href="https://pypi.org/project/omni-local-llm/"><img src="https://img.shields.io/pypi/v/omni-local-llm?color=blue&label=PyPI" alt="PyPI"></a>
+  <a href="https://pypi.org/project/omni-local-llm/"><img src="https://img.shields.io/pypi/pyversions/omni-local-llm" alt="Python"></a>
+  <a href="https://github.com/matteoespo/omni-local-llm/blob/main/LICENSE"><img src="https://img.shields.io/github/license/matteoespo/omni-local-llm?color=green" alt="License"></a>
+  <a href="https://github.com/matteoespo/omni-local-llm/stargazers"><img src="https://img.shields.io/github/stars/matteoespo/omni-local-llm?style=social" alt="Stars"></a>
 </p>
 
 <p align="center">
@@ -48,10 +48,10 @@
 
 ```bash
 # Install
-pip install omni-llm
+pip install omni-local-llm
 
 # Or with uv (recommended)
-uv pip install omni-llm
+uv pip install omni-local-llm
 ```
 
 ```python
@@ -126,17 +126,17 @@ response = manager.chat(
 ### Install from source
 
 ```bash
-git clone https://github.com/matteoespo/omni-llm.git
-cd omni-llm
+git clone https://github.com/matteoespo/omni-local-llm.git
+cd omni-local-llm
 uv pip install -e .
 ```
 
 ### Install from PyPI
 
 ```bash
-pip install omni-llm
+pip install omni-local-llm
 # or
-uv pip install omni-llm
+uv pip install omni-local-llm
 ```
 
 ---

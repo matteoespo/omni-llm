@@ -1,6 +1,6 @@
-# Contributing to Omni-LLM
+# Contributing to Omni-Local-LLM
 
-Thank you for your interest in contributing to **Omni-LLM**! 🎉
+Thank you for your interest in contributing to **Omni-Local-LLM**! 🎉
 
 We welcome contributions of all kinds — new backend adapters, bug fixes, documentation improvements, test coverage, and feature ideas.
 
@@ -36,8 +36,8 @@ This project follows the [Contributor Covenant Code of Conduct](CODE_OF_CONDUCT.
 1. **Fork** the repository on GitHub.
 2. **Clone** your fork locally:
    ```bash
-   git clone https://github.com/<your-username>/omni-llm.git
-   cd omni-llm
+   git clone https://github.com/<your-username>/omni-local-llm.git
+   cd omni-local-llm
    ```
 3. **Create a virtual environment and install dependencies:**
    ```bash
@@ -144,8 +144,8 @@ The configuration lives in [`pyproject.toml`](pyproject.toml).
 4. Keep PRs focused — one feature or fix per PR.
 5. Be responsive to review feedback.
 
-**First-time contributor?** Look for issues labeled [`good first issue`](https://github.com/matteoespo/omni-llm/labels/good%20first%20issue) 🏷️
+**First-time contributor?** Look for issues labeled [`good first issue`](https://github.com/matteoespo/omni-local-llm/labels/good%20first%20issue) 🏷️
 
 ---
 
-Thank you for helping make Omni-LLM better! 🚀
+Thank you for helping make Omni-Local-LLM better! 🚀

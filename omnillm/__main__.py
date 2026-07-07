@@ -5,7 +5,7 @@ from omnillm import LocalLLMManager
 
 
 def main():
-    parser = argparse.ArgumentParser(description="Omni-LLM CLI Interface")
+    parser = argparse.ArgumentParser(description="Omni-Local-LLM CLI Interface")
     parser.add_argument("--backend", type=str, default="ollama", help="Backend to use (ollama, llama.cpp)")
     parser.add_argument("--model", type=str, required=True, help="Model name (e.g., llama3, unsloth/llama-3-8b-GGUF)")
     parser.add_argument("--system", type=str, help="Optional system prompt")

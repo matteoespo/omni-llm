@@ -1,5 +1,5 @@
 name: ✨ Feature Request
-description: Suggest a new feature or improvement for Omni-LLM
+description: Suggest a new feature or improvement for Omni-Local-LLM
 title: "[Feature]: "
 labels: ["enhancement"]
 assignees: []
@@ -54,7 +54,7 @@ body:
     id: scope
     attributes:
       label: Scope
-      description: What area of Omni-LLM does this feature relate to?
+      description: What area of Omni-Local-LLM does this feature relate to?
       multiple: true
       options:
         - Core API

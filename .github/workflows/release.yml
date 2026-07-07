@@ -46,7 +46,7 @@ jobs:
     runs-on: ubuntu-latest
     environment:
       name: pypi
-      url: https://pypi.org/p/omni-llm
+      url: https://pypi.org/p/omni-local-llm
     permissions:
       id-token: write  # Required for trusted publishing (OIDC)
     steps:

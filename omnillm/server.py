@@ -8,7 +8,7 @@ from pydantic import BaseModel
 
 from omnillm.core.manager import LocalLLMManager
 
-app = FastAPI(title="Omni-LLM OpenAI API", version="0.1.0")
+app = FastAPI(title="Omni-Local-LLM OpenAI API", version="0.1.0")
 manager = LocalLLMManager()
 
 

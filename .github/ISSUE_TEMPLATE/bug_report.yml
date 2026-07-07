@@ -1,5 +1,5 @@
 name: 🐛 Bug Report
-description: Report a bug or unexpected behavior in Omni-LLM
+description: Report a bug or unexpected behavior in Omni-Local-LLM
 title: "[Bug]: "
 labels: ["bug", "triage"]
 assignees: []
@@ -18,7 +18,7 @@ body:
       options:
         - label: I have searched the [existing issues](https://github.com/matteoespo/lazy-llm/issues) and this bug has not been reported yet.
           required: true
-        - label: I am using the latest version of Omni-LLM.
+        - label: I am using the latest version of Omni-Local-LLM.
           required: true
 
   - type: textarea
@@ -36,7 +36,7 @@ body:
       label: Steps to Reproduce
       description: Provide a minimal set of steps to reproduce the issue.
       placeholder: |
-        1. Install omni-llm with `pip install omni-llm`
+        1. Install omni-local-llm with `pip install omni-local-llm`
         2. Run the following code:
         ```python
         from omnillm import ...
@@ -78,10 +78,10 @@ body:
       required: true
 
   - type: input
-    id: omni-llm-version
+    id: omni-local-llm-version
     attributes:
-      label: Omni-LLM Version
-      description: "Run `pip show omni-llm` to find the version."
+      label: Omni-Local-LLM Version
+      description: "Run `pip show omni-local-llm` to find the version."
       placeholder: "e.g. 0.1.0"
     validations:
       required: true

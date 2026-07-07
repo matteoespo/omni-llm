@@ -1,5 +1,5 @@
 [project]
-name = "omni-llm"
+name = "omni-local-llm"
 version = "0.1.0"
 description = "A unified Python interface and API server for running local Large Language Models."
 readme = "README.md"
@@ -42,13 +42,13 @@ dependencies = [
 ]
 
 [project.urls]
-Homepage = "https://github.com/matteoespo/omni-llm"
-Repository = "https://github.com/matteoespo/omni-llm"
-Issues = "https://github.com/matteoespo/omni-llm/issues"
+Homepage = "https://github.com/matteoespo/omni-local-llm"
+Repository = "https://github.com/matteoespo/omni-local-llm"
+Issues = "https://github.com/matteoespo/omni-local-llm/issues"
 
 [dependency-groups]
 dev = [
-    "omni-llm",
+    "omni-local-llm",
     "pytest>=9.0.3",
     "pytest-asyncio",
     "pytest-cov>=6.0",
@@ -56,7 +56,7 @@ dev = [
 ]
 
 [tool.uv.sources]
-omni-llm = { workspace = true }
+omni-local-llm = { workspace = true }
 
 [build-system]
 requires = ["hatchling"]
