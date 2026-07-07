@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://img.shields.io/badge/🧠-Omni--LLM-blueviolet?style=for-the-badge&logoColor=white" alt="Omni-Local-LLM" height="50"/>
+  <img src="https://img.shields.io/badge/🧠-Omni--Local--LLM-blueviolet?style=for-the-badge&logoColor=white" alt="Omni-Local-LLM" height="50"/>
 </p>
 
 <h3 align="center">One interface. Every local LLM.</h3>
